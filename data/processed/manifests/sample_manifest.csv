@@ -1,0 +1,15 @@
+lesion_id,image_id,dx,dx_type,age,sex,localization,image_path,split
+HAM_0002094,ISIC_0030549,akiec,histo,50.0,male,upper extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0030549.jpg,test
+HAM_0006217,ISIC_0031043,akiec,histo,85.0,male,face,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0031043.jpg,test
+HAM_0007346,ISIC_0027425,bcc,histo,75.0,male,upper extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0027425.jpg,test
+HAM_0005304,ISIC_0026056,bcc,histo,80.0,male,face,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0026056.jpg,test
+HAM_0001417,ISIC_0032382,bkl,histo,55.0,male,face,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0032382.jpg,test
+HAM_0003605,ISIC_0026895,bkl,histo,55.0,male,face,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0026895.jpg,test
+HAM_0005584,ISIC_0033256,df,consensus,25.0,female,lower extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0033256.jpg,test
+HAM_0004317,ISIC_0029039,df,histo,50.0,female,lower extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0029039.jpg,test
+HAM_0005400,ISIC_0029363,mel,histo,80.0,male,back,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0029363.jpg,test
+HAM_0001095,ISIC_0026647,mel,histo,75.0,male,lower extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0026647.jpg,test
+HAM_0001449,ISIC_0028967,nv,follow_up,45.0,female,foot,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0028967.jpg,test
+HAM_0000949,ISIC_0032444,nv,histo,65.0,male,back,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0032444.jpg,test
+HAM_0003862,ISIC_0033031,vasc,histo,45.0,male,upper extremity,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0033031.jpg,test
+HAM_0000109,ISIC_0031065,vasc,consensus,35.0,female,trunk,/content/skin_cancer_demo/data/raw/sample_images/ISIC_0031065.jpg,test
