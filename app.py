@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 from pathlib import Path
 from typing import Optional
 
@@ -80,12 +81,20 @@ def load_demo_artifacts():
     model_path = _find_model_file()
     classes_path = MODELS_DIR / "class_names.json"
     if model_path is None:
-        return None, None
+        return None, None, "Model artifact not found under models/."
+
+    if importlib.util.find_spec("tensorflow") is None:
+        return (
+            None,
+            None,
+            "TensorFlow is unavailable in this runtime, so the .keras/.h5 model cannot be loaded.",
+        )
+
     try:
-        return load_model_and_classes(model_path, classes_path if classes_path.exists() else None)
+        model, class_names = load_model_and_classes(model_path, classes_path if classes_path.exists() else None)
+        return model, class_names, None
     except Exception as exc:  # pragma: no cover - useful for interactive debugging
-        st.warning(f"Could not load saved model artifacts: {exc}")
-        return None, None
+        return None, None, f"Could not load saved model artifacts: {exc}"
 
 
 # ---------- UI helpers ----------
@@ -192,7 +201,7 @@ def render_sidebar(metadata: pd.DataFrame, sample_manifest: pd.DataFrame):
 
 
 def render_prediction_tab(image: Image.Image | None, image_label: str | None, selected_metadata: dict | None, show_gradcam: bool) -> None:
-    model, class_names = load_demo_artifacts()
+    model, class_names, model_error = load_demo_artifacts()
     left, right = st.columns([1.05, 1.25])
 
     with left:
@@ -211,8 +220,13 @@ def render_prediction_tab(image: Image.Image | None, image_label: str | None, se
             st.warning("No image selected yet.")
             return
         if model is None or class_names is None:
-            st.error("Model artifact not found. Add a trained model file under models/ and reload the app.")
+            st.error(model_error or "Model artifact not found. Add a trained model file under models/ and reload the app.")
             st.code("models/best_model.keras (or model.keras / .h5)\nmodels/class_names.json (optional)", language="bash")
+            if model_error and "TensorFlow is unavailable" in model_error:
+                st.info(
+                    "This deployment is running without TensorFlow support. "
+                    "Use a runtime with Python <= 3.13 for local inference, or connect this UI to an external inference API."
+                )
             return
 
         if st.button("Run prediction", type="primary"):
