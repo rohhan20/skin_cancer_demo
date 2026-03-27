@@ -1,5 +1,7 @@
 streamlit==1.55.0
-tensorflow==2.21.0
+# Streamlit Community Cloud currently provisions Python 3.14, where TensorFlow wheels are unavailable.
+# Keep TensorFlow for supported runtimes (local/dev or hosts pinned to <=3.13).
+tensorflow==2.21.0; python_version < "3.14"
 scikit-learn==1.8.0
 pandas==2.3.3
 numpy==2.4.3
